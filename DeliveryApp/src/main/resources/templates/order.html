@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>Order Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        .blue-button {
+            background-color: #006821;
+            color: white;
+            padding: 10px 15px;
+            font-size: 12px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .blue-button:hover {
+            background-color: #009c20;
+        }
+        .form-element {
+            display: inline-block;
+            margin-right: 15px;
+        }
+        p {
+            font-size: 19px;
+        }
+        .restaurant-row {
+            display: flex;
+            align-items: center;
+        }
+        .restaurant-row h3 {
+            margin-right: 10px;
+        }
+
+        .dish-row {
+            display: flex;
+            align-items: center;
+        }
+        .dish-row p {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Create your order</h1>
+<div class="restaurant-row">
+    <h3  th:text="${restaurantName}">Current restaurant: </h3>
+    <form action="/order" method="post">
+        <input type="submit" value="Next restaurant" class="blue-button">
+    </form>
+</div>
+<p>Choose from the menu: </p>
+<form action="/submit-order" method="post">
+    <div th:each="dish : ${dishes}" class="dish-row">
+        <input type="checkbox" th:value="${dish.name}" th:name="dishes" />
+        <p th:text="${dish.name} + ' - ' + ${dish.price}"></p>
+    </div>
+    <h3>Write your personal information: </h3>
+    <label class="form-element" for="name">Name:</label>
+    <input class="form-element" type="text" id="name" name="name">
+    <label class="form-element" for="surname">Surname:</label>
+    <input class="form-element" type="text" id="surname" name="surname">
+
+    <input type="submit" value="Submit Order" class="blue-button"/>
+</form>
+</body>
+</html>

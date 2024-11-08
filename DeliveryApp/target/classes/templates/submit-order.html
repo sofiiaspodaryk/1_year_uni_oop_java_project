@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>Order Summary</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Your Order</h1>
+<ul>
+    <li th:each="dish : ${dishes}" th:text="${dish}"></li>
+</ul>
+<p th:text="'will be delivered for ' + ${name} + ' ' + ${surname}"></p>
+</body>
+</html>
